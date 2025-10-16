@@ -107,6 +107,54 @@
       "description": "Artwork The Wanderer",
       "imageUrl": "https://picsum.photos/seed/112/800/600",
       "imageHint": "solitary landscape"
+    },
+    {
+      "id": "113",
+      "description": "Artwork Metropolis in Motion",
+      "imageUrl": "https://picsum.photos/seed/113/600/800",
+      "imageHint": "abstract city"
+    },
+    {
+      "id": "114",
+      "description": "Artwork The Glimmering Shore",
+      "imageUrl": "https://picsum.photos/seed/114/800/600",
+      "imageHint": "beach sunset"
+    },
+    {
+      "id": "115",
+      "description": "Artwork Cybernetic Bloom",
+      "imageUrl": "https://picsum.photos/seed/115/600/800",
+      "imageHint": "digital flower"
+    },
+    {
+      "id": "116",
+      "description": "Artwork The Jester's Tears",
+      "imageUrl": "https://picsum.photos/seed/116/600/800",
+      "imageHint": "sad clown"
+    },
+    {
+      "id": "117",
+      "description": "Artwork Gravity's Rainbow",
+      "imageUrl": "https://picsum.photos/seed/117/800/600",
+      "imageHint": "surreal colors"
+    },
+    {
+      "id": "118",
+      "description": "Artwork Whispers of the Wind",
+      "imageUrl": "https://picsum.photos/seed/118/800/600",
+      "imageHint": "abstract wind"
+    },
+    {
+      "id": "119",
+      "description": "Artwork Neural Nexus",
+      "imageUrl": "https://picsum.photos/seed/119/600/800",
+      "imageHint": "digital network"
+    },
+    {
+      "id": "120",
+      "description": "Artwork Echoes of a Dream",
+      "imageUrl": "https://picsum.photos/seed/120/800/600",
+      "imageHint": "surreal dream"
     }
   ]
 }
