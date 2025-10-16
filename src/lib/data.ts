@@ -7,6 +7,16 @@ export interface Artist {
   avatarId: string;
 }
 
+export interface Bid {
+  id: string;
+  artworkId: string;
+  userId: string;
+  userName: string;
+  userAvatarId: string;
+  amount: number;
+  timestamp: string;
+}
+
 export interface Artwork {
   id: string;
   title: string;
@@ -15,6 +25,11 @@ export interface Artwork {
   price: number;
   category: 'Abstract' | 'Portrait' | 'Landscape' | 'Digital' | 'Surrealism';
   imageId: string;
+  biddingEnabled?: boolean;
+  startPrice?: number;
+  currentBid?: number;
+  auctionEndDate?: string;
+  bids?: Bid[];
 }
 
 export interface ImageRecord {
@@ -56,6 +71,14 @@ export const artworks: Artwork[] = [
     price: 450,
     category: 'Abstract',
     imageId: '101',
+    biddingEnabled: true,
+    startPrice: 300,
+    currentBid: 450,
+    auctionEndDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+    bids: [
+      { id: 'bid-1', artworkId: 'art-1', userId: 'user-456', userName: 'Alex', userAvatarId: '1005', amount: 350, timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
+      { id: 'bid-2', artworkId: 'art-1', userId: 'user-123', userName: 'Casey Buyer', userAvatarId: '1015', amount: 450, timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString() }
+    ]
   },
   {
     id: 'art-2',
@@ -92,6 +115,13 @@ export const artworks: Artwork[] = [
     price: 950,
     category: 'Digital',
     imageId: '105',
+    biddingEnabled: true,
+    startPrice: 800,
+    currentBid: 950,
+    auctionEndDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+    bids: [
+      { id: 'bid-3', artworkId: 'art-5', userId: 'user-789', userName: 'Jordan', userAvatarId: '1005', amount: 950, timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString() }
+    ]
   },
   {
     id: 'art-6',
@@ -128,6 +158,14 @@ export const artworks: Artwork[] = [
     price: 550,
     category: 'Portrait',
     imageId: '109',
+    biddingEnabled: true,
+    startPrice: 400,
+    currentBid: 550,
+    auctionEndDate: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
+    bids: [
+       { id: 'bid-4', artworkId: 'art-9', userId: 'user-123', userName: 'Casey Buyer', userAvatarId: '1015', amount: 500, timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString() },
+       { id: 'bid-5', artworkId: 'art-9', userId: 'user-456', userName: 'Alex', userAvatarId: '1005', amount: 550, timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString() }
+    ]
   },
    {
     id: 'art-10',
@@ -200,6 +238,13 @@ export const artworks: Artwork[] = [
     price: 1350,
     category: 'Surrealism',
     imageId: '117',
+    biddingEnabled: true,
+    startPrice: 1000,
+    currentBid: 1350,
+    auctionEndDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString(),
+    bids: [
+        { id: 'bid-6', artworkId: 'art-17', userId: 'user-789', userName: 'Jordan', userAvatarId: '1005', amount: 1350, timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString() }
+    ]
   },
   {
     id: 'art-18',

@@ -10,6 +10,7 @@ import {
   LogOut,
   UserPlus,
   UploadCloud,
+  Gavel,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -37,6 +38,12 @@ export function Header() {
           <span className="font-headline text-2xl font-bold">Artify</span>
         </Link>
         <nav className="hidden flex-1 items-center space-x-4 md:flex">
+          <Link href="/auctions">
+            <Button variant="ghost">
+              <Gavel className="mr-2" />
+              Auctions
+            </Button>
+          </Link>
           <Link href="/favorites">
             <Button variant="ghost">
               <Heart className="mr-2" />

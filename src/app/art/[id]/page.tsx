@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getArtworkById, getArtistById, findImageById, Artwork } from '@/lib/data';
+import { getArtworkById, getArtistById, findImageById } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ShoppingCart } from 'lucide-react';
 import { ArtworkViewTracker } from '@/components/artwork-view-tracker';
+import BiddingPanel from '@/components/bidding-panel';
 
 interface ArtworkPageProps {
   params: { id: string };
@@ -60,18 +61,22 @@ export default function ArtworkPage({ params }: ArtworkPageProps) {
           <Separator className="my-6" />
           <p className="text-base leading-relaxed">{artwork.description}</p>
           <div className="mt-auto pt-8">
-            <div className="flex justify-between items-center rounded-lg bg-card border p-4">
-                <div>
-                    <p className="text-sm text-muted-foreground">Price</p>
-                    <p className="text-3xl font-bold text-accent">
-                        ${artwork.price.toFixed(2)}
-                    </p>
+            {artwork.biddingEnabled ? (
+                <BiddingPanel artwork={artwork} />
+            ) : (
+                <div className="flex justify-between items-center rounded-lg bg-card border p-4">
+                    <div>
+                        <p className="text-sm text-muted-foreground">Price</p>
+                        <p className="text-3xl font-bold text-accent">
+                            ${artwork.price.toFixed(2)}
+                        </p>
+                    </div>
+                    <Button size="lg" className="bg-accent hover:bg-accent/90">
+                        <ShoppingCart className="mr-2 h-5 w-5" />
+                        Buy Now
+                    </Button>
                 </div>
-                <Button size="lg" className="bg-accent hover:bg-accent/90">
-                    <ShoppingCart className="mr-2 h-5 w-5" />
-                    Buy Now
-                </Button>
-            </div>
+            )}
           </div>
         </div>
       </div>

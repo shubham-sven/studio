@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
+import { Heart, Gavel } from 'lucide-react';
 import type { Artwork, Artist } from '@/lib/data';
 import { findImageById, getArtistById } from '@/lib/data';
 import {
@@ -16,6 +16,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useFavorites } from '@/hooks/use-favorites';
 import { Badge } from './ui/badge';
+import { formatDistanceToNow, parseISO } from 'date-fns';
+import { useEffect, useState } from 'react';
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -26,6 +28,23 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
   const image = findImageById(artwork.imageId);
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(artwork.id);
+  const [timeLeft, setTimeLeft] = useState('');
+
+  useEffect(() => {
+    if (!artwork.auctionEndDate) return;
+
+    const interval = setInterval(() => {
+      const endDate = parseISO(artwork.auctionEndDate!);
+      if (new Date() > endDate) {
+        setTimeLeft('Auction Ended');
+        clearInterval(interval);
+      } else {
+        setTimeLeft(formatDistanceToNow(endDate, { addSuffix: true }));
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [artwork.auctionEndDate]);
 
   if (!artist || !image) {
     return null;
@@ -60,6 +79,11 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
             >
               <Heart className={cn(favorite && 'fill-current')} />
             </Button>
+            {artwork.biddingEnabled && (
+                <div className="absolute bottom-0 w-full bg-black/50 backdrop-blur-sm p-2 text-white text-center text-xs">
+                    Auction ends {timeLeft}
+                </div>
+            )}
           </div>
         </CardHeader>
         <CardContent className="p-4">
@@ -79,9 +103,18 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
         </CardContent>
         <CardFooter className="flex justify-between items-center p-4 pt-0">
           <Badge variant="outline">{artwork.category}</Badge>
-          <p className="text-lg font-semibold text-primary">
-            ${artwork.price.toFixed(2)}
-          </p>
+          {artwork.biddingEnabled ? (
+            <div className="text-right">
+                <p className="text-xs text-muted-foreground">Current Bid</p>
+                <p className="text-lg font-semibold text-primary">
+                    ${(artwork.currentBid ?? artwork.startPrice)?.toFixed(2)}
+                </p>
+            </div>
+          ) : (
+            <p className="text-lg font-semibold text-primary">
+              ${artwork.price.toFixed(2)}
+            </p>
+          )}
         </CardFooter>
       </Link>
     </Card>
