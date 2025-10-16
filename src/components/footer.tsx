@@ -16,7 +16,7 @@ export function Footer() {
                         <ul className="space-y-2">
                             {categories.map(category => (
                                 <li key={category}>
-                                    <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                                    <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
                                         {category}
                                     </Link>
                                 </li>
@@ -29,8 +29,8 @@ export function Footer() {
                         <h3 className="font-semibold tracking-wider uppercase">For Artists</h3>
                         <ul className="space-y-2">
                             <li><Link href="/upload" className="text-muted-foreground hover:text-primary transition-colors">Sell Your Art</Link></li>
-                            <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Artist Handbook</Link></li>
-                            <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Community Forum</Link></li>
+                            <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Artist Handbook</Link></li>
+                            <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Community Forum</Link></li>
                         </ul>
                     </div>
                     
@@ -40,7 +40,7 @@ export function Footer() {
                         <ul className="space-y-2">
                              {aboutLinks.map(link => (
                                 <li key={link}>
-                                    <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                                    <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
                                         {link}
                                     </Link>
                                 </li>
@@ -52,27 +52,31 @@ export function Footer() {
                     <div className="space-y-4 col-span-2 md:col-span-2">
                          <h3 className="font-semibold tracking-wider uppercase">Get the App</h3>
                          <div className="flex flex-col sm:flex-row gap-4">
-                            <Button variant="outline" className="w-full sm:w-auto justify-start">
+                            <Button variant="outline" className="w-full sm:w-auto justify-start" asChild>
+                               <a href="https://play.google.com" target="_blank" rel="noopener noreferrer">
                                 <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/google-play-icon.png" alt="Play Store" className="h-6 w-6 mr-2" />
                                 <div>
                                     <p className="text-xs">GET IT ON</p>
                                     <p className="text-sm font-semibold">Google Play</p>
                                 </div>
+                                </a>
                             </Button>
-                             <Button variant="outline" className="w-full sm:w-auto justify-start">
+                             <Button variant="outline" className="w-full sm:w-auto justify-start" asChild>
+                                <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
                                 <img src="https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/apple-icon.png" alt="App Store" className="h-6 w-6 mr-2" />
                                 <div>
                                     <p className="text-xs">Download on the</p>
                                     <p className="text-sm font-semibold">App Store</p>
                                 </div>
+                                </a>
                             </Button>
                          </div>
                          <div className="pt-4">
                             <h3 className="font-semibold tracking-wider uppercase">Legal & Privacy</h3>
                             <ul className="space-y-2 mt-4">
-                                <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</Link></li>
-                                <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-                                 <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Vulnerability Disclosure</Link></li>
+                                <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Terms & Conditions</Link></li>
+                                <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+                                 <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Vulnerability Disclosure</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -87,11 +91,11 @@ export function Footer() {
                         </p>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link href="#" className="text-muted-foreground hover:text-primary"><Facebook /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary"><Instagram /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary"><Youtube /></Link>
-                        <Link href="#" className="text-muted-foreground hover:text-primary"><Linkedin /></Link>
+                        <Link href="/" className="text-muted-foreground hover:text-primary"><Facebook /></Link>
+                        <Link href="/" className="text-muted-foreground hover:text-primary"><Instagram /></Link>
+                        <Link href="/" className="text-muted-foreground hover:text-primary"><Twitter /></Link>
+                        <Link href="/" className="text-muted-foreground hover:text-primary"><Youtube /></Link>
+                        <Link href="/" className="text-muted-foreground hover:text-primary"><Linkedin /></Link>
                     </div>
                 </div>
             </div>
