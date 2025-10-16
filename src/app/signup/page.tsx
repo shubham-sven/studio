@@ -21,8 +21,8 @@ export default function SignupPage() {
   const [role, setRole] = useState<'buyer' | 'artist'>('buyer');
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-gray-50 dark:bg-gray-900/10 px-4">
-      <Card className="w-full max-w-md shadow-lg">
+    <div className="flex min-h-[80vh] items-center justify-center bg-gradient-to-br from-accent/10 via-background to-background p-4">
+      <Card className="w-full max-w-md shadow-2xl shadow-accent/10">
         <CardHeader className="text-center">
           <CardTitle className="font-headline text-3xl">Create an Account</CardTitle>
           <CardDescription>
