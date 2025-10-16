@@ -1,3 +1,112 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "10",
+      "description": "Artist Elena Petrova",
+      "imageUrl": "https://picsum.photos/seed/10/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "20",
+      "description": "Artist Kenji Tanaka",
+      "imageUrl": "https://picsum.photos/seed/20/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "30",
+      "description": "Artist Maria Garcia",
+      "imageUrl": "https://picsum.photos/seed/30/100/100",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "1005",
+      "description": "Guest user avatar",
+      "imageUrl": "https://picsum.photos/seed/1005/100/100",
+      "imageHint": "abstract shape"
+    },
+    {
+      "id": "1025",
+      "description": "Artist user avatar",
+      "imageUrl": "https://picsum.photos/seed/1025/100/100",
+      "imageHint": "artist painting"
+    },
+    {
+      "id": "1015",
+      "description": "Buyer user avatar",
+      "imageUrl": "https://picsum.photos/seed/1015/100/100",
+      "imageHint": "person shopping"
+    },
+    {
+      "id": "101",
+      "description": "Artwork Chromatic Pulse",
+      "imageUrl": "https://picsum.photos/seed/101/600/800",
+      "imageHint": "abstract colorful"
+    },
+    {
+      "id": "102",
+      "description": "Artwork The Whispering City",
+      "imageUrl": "https://picsum.photos/seed/102/800/600",
+      "imageHint": "surreal city"
+    },
+    {
+      "id": "103",
+      "description": "Artwork Serenity in Crimson",
+      "imageUrl": "https://picsum.photos/seed/103/600/800",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "104",
+      "description": "Artwork Emerald Valley",
+      "imageUrl": "https://picsum.photos/seed/104/800/600",
+      "imageHint": "abstract landscape"
+    },
+    {
+      "id": "105",
+      "description": "Artwork Digital Dreamscape",
+      "imageUrl": "https://picsum.photos/seed/105/800/600",
+      "imageHint": "digital art"
+    },
+    {
+      "id": "106",
+      "description": "Artwork The Scholar",
+      "imageUrl": "https://picsum.photos/seed/106/600/800",
+      "imageHint": "old man"
+    },
+    {
+      "id": "107",
+      "description": "Artwork Oceanic Flow",
+      "imageUrl": "https://picsum.photos/seed/107/800/600",
+      "imageHint": "abstract water"
+    },
+    {
+      "id": "108",
+      "description": "Artwork The Clockwork Forest",
+      "imageUrl": "https://picsum.photos/seed/108/800/600",
+      "imageHint": "surreal forest"
+    },
+    {
+      "id": "109",
+      "description": "Artwork Ephemeral Gaze",
+      "imageUrl": "https://picsum.photos/seed/109/600/800",
+      "imageHint": "woman face"
+    },
+    {
+      "id": "110",
+      "description": "Artwork Silicon Sunrise",
+      "imageUrl": "https://picsum.photos/seed/110/800/600",
+      "imageHint": "digital landscape"
+    },
+    {
+      "id": "111",
+      "description": "Artwork Rhapsody in Blue",
+      "imageUrl": "https://picsum.photos/seed/111/600/800",
+      "imageHint": "abstract blue"
+    },
+    {
+      "id": "112",
+      "description": "Artwork The Wanderer",
+      "imageUrl": "https://picsum.photos/seed/112/800/600",
+      "imageHint": "solitary landscape"
+    }
+  ]
 }
