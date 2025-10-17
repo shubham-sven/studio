@@ -53,13 +53,6 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" onClick={() => login('buyer')}>
                 Login
             </Button>
-            <div className="relative w-full">
-                <Separator className="absolute top-1/2 -translate-y-1/2" />
-                <p className="text-center bg-card px-2 text-xs text-muted-foreground">OR LOG IN AS</p>
-            </div>
-            <Button variant="secondary" className="w-full" onClick={() => login('artist')}>
-                Login as Artist
-            </Button>
         </CardContent>
         <CardFooter className="flex flex-col items-center gap-2">
             <div className="text-center text-sm">
