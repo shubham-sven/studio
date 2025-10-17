@@ -57,8 +57,8 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
 
   return (
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-      <Link href={`/art/${artwork.id}`} className="block">
-        <CardHeader className="p-0">
+      <CardHeader className="p-0">
+        <Link href={`/art/${artwork.id}`} className="block">
           <div className="relative aspect-[3/4] w-full overflow-hidden">
             <Image
               src={image.imageUrl}
@@ -67,7 +67,14 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               data-ai-hint={image.imageHint}
             />
-            <Button
+            {artwork.biddingEnabled && (
+                <div className="absolute bottom-0 w-full bg-black/50 backdrop-blur-sm p-2 text-white text-center text-xs">
+                    Auction ends {timeLeft}
+                </div>
+            )}
+          </div>
+        </Link>
+         <Button
               size="icon"
               variant="secondary"
               className={cn(
@@ -78,45 +85,42 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
               aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
             >
               <Heart className={cn(favorite && 'fill-current')} />
-            </Button>
-            {artwork.biddingEnabled && (
-                <div className="absolute bottom-0 w-full bg-black/50 backdrop-blur-sm p-2 text-white text-center text-xs">
-                    Auction ends {timeLeft}
-                </div>
-            )}
-          </div>
-        </CardHeader>
-        <CardContent className="p-4">
-          <CardTitle className="font-headline text-xl leading-tight truncate">
+         </Button>
+      </CardHeader>
+      <CardContent className="p-4">
+        <Link href={`/art/${artwork.id}`}>
+          <CardTitle className="font-headline text-xl leading-tight truncate hover:text-primary">
             {artwork.title}
           </CardTitle>
-          <p className="text-sm text-muted-foreground mt-1">
-            by{' '}
-            <Link
-              href={`/artists/${artist.id}`}
-              className="hover:text-primary hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {artist.name}
-            </Link>
-          </p>
-        </CardContent>
-        <CardFooter className="flex justify-between items-center p-4 pt-0">
-          <Badge variant="outline">{artwork.category}</Badge>
+        </Link>
+        <p className="text-sm text-muted-foreground mt-1">
+          by{' '}
+          <Link
+            href={`/artists/${artist.id}`}
+            className="hover:text-primary hover:underline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {artist.name}
+          </Link>
+        </p>
+      </CardContent>
+      <CardFooter className="flex justify-between items-center p-4 pt-0">
+         <Badge variant="outline">{artwork.category}</Badge>
           {artwork.biddingEnabled ? (
-            <div className="text-right">
+              <Link href={`/art/${artwork.id}`} className="text-right">
                 <p className="text-xs text-muted-foreground">Current Bid</p>
                 <p className="text-lg font-semibold text-primary">
                     ${(artwork.currentBid ?? artwork.startPrice)?.toFixed(2)}
                 </p>
-            </div>
+              </Link>
           ) : (
-            <p className="text-lg font-semibold text-primary">
-              ${artwork.price.toFixed(2)}
-            </p>
+             <Link href={`/art/${artwork.id}`}>
+                <p className="text-lg font-semibold text-primary">
+                ${artwork.price.toFixed(2)}
+                </p>
+            </Link>
           )}
-        </CardFooter>
-      </Link>
+      </CardFooter>
     </Card>
   );
 }
