@@ -50,20 +50,20 @@ export function Header() {
               Favorites
             </Button>
           </Link>
-          {user.role === 'artist' && (
-            <Link href="/upload">
-              <Button variant="ghost">
-                <UploadCloud className="mr-2" />
-                Upload Art
-              </Button>
-            </Link>
-          )}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <div className="relative w-full max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input placeholder="Search artwork..." className="pl-10" />
           </div>
+          {user.role === 'artist' && (
+            <Link href="/upload" passHref>
+              <Button className="bg-accent hover:bg-accent/90">
+                <UploadCloud className="mr-2" />
+                Upload Art
+              </Button>
+            </Link>
+          )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
