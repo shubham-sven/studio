@@ -50,6 +50,14 @@ export function Header() {
               Favorites
             </Button>
           </Link>
+          {user.role === 'artist' && (
+            <Link href="/upload">
+              <Button variant="ghost">
+                <UploadCloud className="mr-2" />
+                Upload Art
+              </Button>
+            </Link>
+          )}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <div className="relative w-full max-w-sm">
