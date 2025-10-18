@@ -28,6 +28,7 @@ import { cn } from '@/lib/utils';
 
 export default function UploadPage() {
   const [isAuction, setIsAuction] = useState(false);
+  const [auctionStartDate, setAuctionStartDate] = useState<Date>();
   const [auctionEndDate, setAuctionEndDate] = useState<Date>();
 
   return (
@@ -99,6 +100,31 @@ export default function UploadPage() {
                                     </div>
                                     <Input id="start-price" type="number" placeholder="100.00" className='pl-7' />
                                 </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="auction-start-date">Auction Start Date</Label>
+                                 <Popover>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                            "w-full justify-start text-left font-normal",
+                                            !auctionStartDate && "text-muted-foreground"
+                                        )}
+                                        >
+                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                        {auctionStartDate ? format(auctionStartDate, "PPP") : <span>Pick a date</span>}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0">
+                                        <Calendar
+                                        mode="single"
+                                        selected={auctionStartDate}
+                                        onSelect={setAuctionStartDate}
+                                        initialFocus
+                                        />
+                                    </PopoverContent>
+                                </Popover>
                             </div>
                              <div className="space-y-2">
                                 <Label htmlFor="auction-end-date">Auction End Date</Label>
