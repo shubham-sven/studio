@@ -20,7 +20,7 @@ interface User {
 
 interface AuthContextType {
   user: User;
-  login: (role: 'artist' | 'buyer') => void;
+  login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -45,17 +45,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const login = (role: 'artist' | 'buyer') => {
-    const loggedInUser: User = {
-      id: 'user-123',
-      name: role === 'artist' ? 'Arturo Picasso' : 'Casey Buyer',
-      email:
-        role === 'artist' ? 'arturo@example.com' : 'casey@example.com',
-      role,
-      avatarId: role === 'artist' ? '1025' : '1015',
-    };
-    localStorage.setItem('artify-user', JSON.stringify(loggedInUser));
-    setUser(loggedInUser);
+  const login = async (email: string, password: string): Promise<boolean> => {
+    // Import userCredentials from data.ts
+    const { userCredentials, users } = await import('../lib/data');
+
+    // Check credentials against userCredentials
+    const credentials = userCredentials[email];
+    if (credentials && credentials.password === password) {
+      // Find the full user object
+      const foundUser = users.find(u => u.email === email);
+      if (foundUser) {
+        const loggedInUser: User = {
+          id: foundUser.id,
+          name: foundUser.name,
+          email: foundUser.email,
+          role: foundUser.role,
+          avatarId: foundUser.avatarId,
+        };
+        localStorage.setItem('artify-user', JSON.stringify(loggedInUser));
+        setUser(loggedInUser);
+        return true;
+      }
+    }
+    return false;
   };
 
   const logout = () => {

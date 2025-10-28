@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <Providers>
           <div className="flex min-h-screen flex-col">
-            <Header />
+            <Header/>
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>

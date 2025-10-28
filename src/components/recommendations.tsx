@@ -2,24 +2,30 @@
 
 import { Wand2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { recommendArt, type ArtRecommendationsOutput } from '@/ai/flows/art-recommendations';
+import { artworks, artists } from '@/lib/data';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Skeleton } from './ui/skeleton';
 import Image from 'next/image';
 import Link from 'next/link';
 
+interface ArtRecommendation {
+  artworkId: string;
+  title: string;
+  artist: string;
+  category: string;
+  description: string;
+}
+
 const BROWSING_HISTORY_KEY = 'artify-browsing-history';
 const PREFERENCES_KEY = 'artify-user-preferences';
 
-function RecommendationCard({ artwork }: { artwork: ArtRecommendationsOutput[0] }) {
-  // We can't know the artwork ID for a real lookup, so we'll use a placeholder.
-  // In a real app, the AI would return valid artwork IDs.
+function RecommendationCard({ artwork }: { artwork: ArtRecommendation }) {
   const placeholderImage = `https://picsum.photos/seed/${artwork.artworkId}/600/800`
 
   return (
     <Card className="overflow-hidden group">
-      <Link href="#">
+      <Link href={`/art/${artwork.artworkId}`}>
          <CardHeader className="p-0">
           <div className="relative aspect-[3/4] w-full overflow-hidden">
             <Image
@@ -43,19 +49,18 @@ function RecommendationCard({ artwork }: { artwork: ArtRecommendationsOutput[0] 
 
 
 export function Recommendations() {
-  const [recommendations, setRecommendations] = useState<ArtRecommendationsOutput | null>(null);
+  const [recommendations, setRecommendations] = useState<ArtRecommendation[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getRecommendations = async () => {
+  const getRecommendations = () => {
     setLoading(true);
     setError(null);
     setRecommendations(null);
+
     try {
       const storedHistory = localStorage.getItem(BROWSING_HISTORY_KEY);
       const browsingHistory = storedHistory ? JSON.parse(storedHistory) : [];
-      
-      const preferences = localStorage.getItem(PREFERENCES_KEY) || "I like modern and vibrant art.";
 
       if (browsingHistory.length === 0) {
         setError("Browse some art first to get personalized recommendations!");
@@ -63,8 +68,29 @@ export function Recommendations() {
         return;
       }
 
-      const result = await recommendArt({ browsingHistory, preferences });
-      setRecommendations(result);
+      // Simple recommendation logic based on browsing history
+      const viewedCategories = browsingHistory.map((item: any) => item.category);
+      const mostViewedCategory = viewedCategories.reduce((a: string, b: string, i: number, arr: string[]) =>
+        arr.filter(v => v === a).length >= arr.filter(v => v === b).length ? a : b, viewedCategories[0]
+      );
+
+      // Get artworks from the same category, excluding viewed ones
+      const viewedIds = browsingHistory.map((item: any) => item.artworkId);
+      const recommendedArtworks = artworks
+        .filter(art => art.category === mostViewedCategory && !viewedIds.includes(art.id))
+        .slice(0, 5)
+        .map(art => {
+          const artist = artists.find(a => a.id === art.artistId);
+          return {
+            artworkId: art.id,
+            title: art.title,
+            artist: artist?.name || 'Unknown Artist',
+            category: art.category,
+            description: art.description
+          };
+        });
+
+      setRecommendations(recommendedArtworks);
     } catch (err) {
       console.error(err);
       setError('Failed to get recommendations. Please try again.');
@@ -80,7 +106,7 @@ export function Recommendations() {
             <Wand2 className="w-8 h-8 text-primary" />
             <div>
                 <CardTitle className="font-headline text-2xl">For You</CardTitle>
-                <CardDescription>AI-powered recommendations based on your activity.</CardDescription>
+        <CardDescription>Personalized recommendations based on your activity.</CardDescription>
             </div>
         </div>
         <Button onClick={getRecommendations} disabled={loading} className="bg-accent hover:bg-accent/90">

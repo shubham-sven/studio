@@ -4,7 +4,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
 const repo = 'studio'; // The name of your repository
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  // output: 'export',
   // Configure basePath and assetPrefix for GitHub Pages
   basePath: isGithubActions ? `/${repo}` : '',
   assetPrefix: isGithubActions ? `/${repo}/` : '',

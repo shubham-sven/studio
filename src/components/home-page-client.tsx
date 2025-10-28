@@ -12,6 +12,7 @@ import {
 } from './ui/select';
 import { Recommendations } from './recommendations';
 import { Slider } from './ui/slider';
+import { SkeletonCard } from './skeleton-card';
 
 interface HomePageClientProps {
   initialArtworks: Artwork[];
@@ -49,14 +50,14 @@ export default function HomePageClient({
         <Recommendations />
       </section>
 
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8 bg-white/50 dark:bg-gray-900/50 rounded-2xl backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
         <div className="mb-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-          <h2 className="font-headline text-4xl font-semibold">Explore Art</h2>
+          <h2 className="font-headline text-4xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Explore Art</h2>
           <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
             <div className="flex items-center gap-2 w-full md:w-auto">
                 <span className='text-sm text-muted-foreground whitespace-nowrap'>Filter by category:</span>
                 <Select onValueChange={setCategoryFilter} defaultValue="All">
-                  <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectTrigger className="w-full md:w-[180px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-purple-200 dark:border-purple-800">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -82,9 +83,16 @@ export default function HomePageClient({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredArtworks.map((artwork) => (
-            <ArtworkCard key={artwork.id} artwork={artwork} />
-          ))}
+          {filteredArtworks.length === 0 ? (
+            // Show skeleton cards while loading or when no results
+            Array.from({ length: 8 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))
+          ) : (
+            filteredArtworks.map((artwork) => (
+              <ArtworkCard key={artwork.id} artwork={artwork} />
+            ))
+          )}
         </div>
       </section>
     </>

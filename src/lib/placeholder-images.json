@@ -155,6 +155,168 @@
       "description": "Artwork Echoes of a Dream",
       "imageUrl": "https://picsum.photos/seed/120/800/600",
       "imageHint": "surreal dream"
+    },
+    {
+      "id": "40",
+      "description": "Artist Pablo Picasso",
+      "imageUrl": "https://picsum.photos/seed/40/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "50",
+      "description": "Artist Frida Kahlo",
+      "imageUrl": "https://picsum.photos/seed/50/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "60",
+      "description": "Artist Vincent van Gogh",
+      "imageUrl": "https://picsum.photos/seed/60/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "70",
+      "description": "Artist Leonardo da Vinci",
+      "imageUrl": "https://picsum.photos/seed/70/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "80",
+      "description": "Artist Georgia O'Keeffe",
+      "imageUrl": "https://picsum.photos/seed/80/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "90",
+      "description": "Artist Banksy",
+      "imageUrl": "https://picsum.photos/seed/90/100/100",
+      "imageHint": "mysterious figure"
+    },
+    {
+      "id": "100",
+      "description": "Artist Yayoi Kusama",
+      "imageUrl": "https://picsum.photos/seed/100/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "121",
+      "description": "Artwork Guernica by Pablo Picasso",
+      "imageUrl": "https://picsum.photos/seed/121/800/600",
+      "imageHint": "cubist painting"
+    },
+    {
+      "id": "122",
+      "description": "Artwork The Two Fridas by Frida Kahlo",
+      "imageUrl": "https://picsum.photos/seed/122/600/800",
+      "imageHint": "double portrait"
+    },
+    {
+      "id": "123",
+      "description": "Artwork Starry Night by Vincent van Gogh",
+      "imageUrl": "https://picsum.photos/seed/123/800/600",
+      "imageHint": "night sky painting"
+    },
+    {
+      "id": "124",
+      "description": "Artwork Mona Lisa by Leonardo da Vinci",
+      "imageUrl": "https://picsum.photos/seed/124/600/800",
+      "imageHint": "famous portrait"
+    },
+    {
+      "id": "125",
+      "description": "Artwork Red Poppy by Georgia O'Keeffe",
+      "imageUrl": "https://picsum.photos/seed/125/600/800",
+      "imageHint": "flower painting"
+    },
+    {
+      "id": "126",
+      "description": "Artwork Girl with Balloon by Banksy",
+      "imageUrl": "https://picsum.photos/seed/126/600/800",
+      "imageHint": "street art"
+    },
+    {
+      "id": "127",
+      "description": "Artwork Pumpkin by Yayoi Kusama",
+      "imageUrl": "https://picsum.photos/seed/127/600/800",
+      "imageHint": "polka dot sculpture"
+    },
+    {
+      "id": "128",
+      "description": "Artwork Les Demoiselles d'Avignon by Pablo Picasso",
+      "imageUrl": "https://picsum.photos/seed/128/800/600",
+      "imageHint": "cubist figures"
+    },
+    {
+      "id": "129",
+      "description": "Artwork The Persistence of Memory by Salvador Dalí",
+      "imageUrl": "https://picsum.photos/seed/129/800/600",
+      "imageHint": "melting clocks"
+    },
+    {
+      "id": "130",
+      "description": "Artwork The Great Wave off Kanagawa by Hokusai",
+      "imageUrl": "https://picsum.photos/seed/130/800/600",
+      "imageHint": "japanese wave"
+    },
+    {
+      "id": "131",
+      "description": "Artwork The Weeping Woman by Pablo Picasso",
+      "imageUrl": "https://picsum.photos/seed/131/600/800",
+      "imageHint": "crying woman portrait"
+    },
+    {
+      "id": "132",
+      "description": "Artwork Self-Portrait with Thorn Necklace and Hummingbird by Frida Kahlo",
+      "imageUrl": "https://picsum.photos/seed/132/600/800",
+      "imageHint": "self portrait with thorns"
+    },
+    {
+      "id": "133",
+      "description": "Artwork Sunflowers by Vincent van Gogh",
+      "imageUrl": "https://picsum.photos/seed/133/600/800",
+      "imageHint": "yellow sunflowers"
+    },
+    {
+      "id": "134",
+      "description": "Artwork The Last Supper by Leonardo da Vinci",
+      "imageUrl": "https://picsum.photos/seed/134/800/600",
+      "imageHint": "jesus and apostles"
+    },
+    {
+      "id": "135",
+      "description": "Artwork Black Iris by Georgia O'Keeffe",
+      "imageUrl": "https://picsum.photos/seed/135/600/800",
+      "imageHint": "black flower closeup"
+    },
+    {
+      "id": "136",
+      "description": "Artwork Flower Thrower by Banksy",
+      "imageUrl": "https://picsum.photos/seed/136/600/800",
+      "imageHint": "masked protester flowers"
+    },
+    {
+      "id": "137",
+      "description": "Artwork Infinity Mirrored Room by Yayoi Kusama",
+      "imageUrl": "https://picsum.photos/seed/137/800/600",
+      "imageHint": "mirrored room lights"
+    },
+    {
+      "id": "138",
+      "description": "Artwork Blue Period Portrait by Pablo Picasso",
+      "imageUrl": "https://picsum.photos/seed/138/600/800",
+      "imageHint": "blue toned portrait"
+    },
+    {
+      "id": "139",
+      "description": "Artwork The Broken Column by Frida Kahlo",
+      "imageUrl": "https://picsum.photos/seed/139/600/800",
+      "imageHint": "broken column body"
+    },
+    {
+      "id": "140",
+      "description": "Artwork Café Terrace at Night by Vincent van Gogh",
+      "imageUrl": "https://picsum.photos/seed/140/800/600",
+      "imageHint": "night café exterior"
     }
   ]
 }
