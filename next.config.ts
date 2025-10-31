@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   basePath: isGithubActions ? `/${repo}` : '',
   assetPrefix: isGithubActions ? `/${repo}/` : '',
   /* config options here */
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

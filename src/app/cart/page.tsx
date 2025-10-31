@@ -18,6 +18,7 @@ export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, getCartTotal, getCartItemCount, clearCart } = useCart();
   const { user } = useAuth();
   const { toast } = useToast();
+  const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   if (!cart || cart.items.length === 0) {

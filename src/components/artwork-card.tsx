@@ -18,7 +18,7 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { Badge } from './ui/badge';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { createCheckoutSession, formatPrice } from '@/lib/payments';
+import { formatPrice } from '@/lib/payments';
 import { useAuth } from '@/context/auth-context';
 import { useCart } from '@/context/cart-context';
 import { useToast } from '@/hooks/use-toast';
@@ -36,7 +36,7 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
   const { user } = useAuth();
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const [isPurchasing, setIsPurchasing] = useState(false);
+
 
   useEffect(() => {
     if (!artwork.auctionEndDate) return;
@@ -104,30 +104,22 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
       return;
     }
 
-    setIsPurchasing(true);
     try {
-      const session = await createCheckoutSession(
-        [{ artworkId: artwork.id, price: artwork.price, title: artwork.title }],
-        `${window.location.origin}/checkout/success`,
-        `${window.location.origin}/art/${artwork.id}`
-      );
-
-      // In production, redirect to Stripe Checkout
-      // window.location.href = session.url;
-
-      // For mock, show success message
+      // Add item to cart first
+      await addToCart(artwork.id);
       toast({
-        title: 'Purchase Successful!',
-        description: `You have purchased "${artwork.title}" for ${formatPrice(artwork.price)}.`,
+        title: 'Added to Cart',
+        description: `"${artwork.title}" has been added to your cart.`,
       });
+
+      // Redirect to checkout
+      window.location.href = '/checkout';
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Purchase Failed',
-        description: 'There was an error processing your purchase. Please try again.',
+        title: 'Error',
+        description: 'Failed to add item to cart. Please try again.',
       });
-    } finally {
-      setIsPurchasing(false);
     }
   };
 
@@ -210,11 +202,10 @@ export function ArtworkCard({ artwork }: ArtworkCardProps) {
             </Button>
             <Button
               onClick={handleBuyNow}
-              disabled={isPurchasing}
               className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
-              {isPurchasing ? 'Processing...' : 'Buy Now'}
+              Buy Now
             </Button>
           </div>
         )}

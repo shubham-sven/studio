@@ -1,28 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// Mock database - in production, replace with real database
-// This would typically be shared with the main orders route
-let orders: any[] = [
-  {
-    id: 'ORD-1234567890',
-    userId: 'user-123',
-    status: 'placed',
-    paymentStatus: 'paid',
-    trackingNumber: 'TN1234567890',
-    estimatedDelivery: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
-    actualDelivery: null,
-    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-  },
-];
+import { orders } from '../../orders-data';
 
 // GET /api/orders/[id]/status - Get order status
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = params.id;
+    const { id: orderId } = await params;
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get('userId');
 
@@ -51,7 +36,7 @@ export async function GET(
       delivered: { step: 5, label: 'Delivered', completed: order.status === 'delivered' },
     };
 
-    const currentStep = statusProgress[order.status]?.step || 1;
+    const currentStep = (statusProgress as any)[order.status]?.step || 1;
 
     return NextResponse.json({
       success: true,
@@ -79,10 +64,10 @@ export async function GET(
 // PUT /api/orders/[id]/status - Update order status
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = params.id;
+    const { id: orderId } = await params;
     const body = await request.json();
     const { userId, status, trackingNumber } = body;
 
@@ -106,6 +91,9 @@ export async function PUT(
       ...orders[orderIndex],
       status: status || orders[orderIndex].status,
       trackingNumber: trackingNumber || orders[orderIndex].trackingNumber,
+      notes: body.notes || orders[orderIndex].notes,
+      cancellationReason: body.cancellationReason || orders[orderIndex].cancellationReason,
+      cancellationComments: body.cancellationComments || orders[orderIndex].cancellationComments,
       updatedAt: new Date().toISOString(),
     };
 

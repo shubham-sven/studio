@@ -161,13 +161,51 @@ export default function CheckoutPage() {
         return total + (artwork ? item.quantity * artwork.price : 0);
       }, 0);
 
+      // Generate order ID first
+      const generatedOrderId = `ORD-${Date.now()}`;
+      setOrderId(generatedOrderId);
+
+      // Create order in database
+      const orderData = {
+        userId: user.id,
+        items: cart.items.map(item => ({
+          artworkId: item.artworkId,
+          quantity: item.quantity,
+        })),
+        subtotal: totalAmount,
+        tax: totalAmount * 0.18,
+        shipping: totalAmount > 500 ? 0 : 50,
+        discount: 0,
+        total: totalAmount * 1.18 + (totalAmount > 500 ? 0 : 50),
+        currency: 'INR',
+        paymentMethod: selectedPaymentMethod,
+        shippingAddress: selectedAddress,
+        billingAddress: selectedAddress,
+      };
+
+      const orderResponse = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!orderResponse.ok) {
+        throw new Error('Failed to create order');
+      }
+
+      const orderResult = await orderResponse.json();
+
       if (selectedPaymentMethod === 'cod') {
         // COD - simulate processing delay
         await new Promise(resolve => setTimeout(resolve, 3000));
 
-        // Generate order ID
-        const generatedOrderId = `ORD-${Date.now()}`;
-        setOrderId(generatedOrderId);
+        // Send order confirmation notification
+        toast({
+          title: 'Order Confirmed!',
+          description: `Your order ${generatedOrderId} has been placed successfully.`,
+        });
 
         await clearCart();
         clearSavedCheckoutState();
@@ -214,9 +252,11 @@ export default function CheckoutPage() {
             });
 
             if (verifyResponse.ok) {
-              // Generate order ID
-              const generatedOrderId = `ORD-${Date.now()}`;
-              setOrderId(generatedOrderId);
+              // Send order confirmation notification
+              toast({
+                title: 'Order Confirmed!',
+                description: `Your order ${generatedOrderId} has been placed successfully. Payment received.`,
+              });
 
               await clearCart();
               clearSavedCheckoutState();

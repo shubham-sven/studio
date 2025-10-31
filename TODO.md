@@ -1,28 +1,23 @@
-# TODO: Implement Password Validation for Login
+# TODO: Complete Payment System Implementation
 
-## Steps to Complete
+## Phase 2: Address Management
+- [ ] Enhance address book component with full CRUD operations
+- [ ] Implement address API endpoints (Create, Read, Update, Delete)
+- [ ] Add address selection and management in checkout
+- [ ] Implement delivery address validation
+- [ ] Support multiple delivery addresses per user
 
-- [x] Update src/lib/data.ts: Add 'password' and 'role' fields to users (e.g., password: 'password123', role: 'buyer' or 'artist')
-- [x] Update src/context/auth-context.tsx: Modify login function to take email and password, validate against users data, set user if valid, else handle error
-- [x] Update src/app/login/page.tsx: Use form submission to capture email/password, call login, display error if invalid
-- [x] Test login with valid/invalid credentials and ensure error messages display properly
+## Order Cancellation Feature
+- [ ] Add cancel order functionality in order details page
+- [ ] Update order status API to handle cancellation
+- [ ] Add cancellation confirmation modal
+- [ ] Update order history to show cancelled orders
+- [ ] Add cancellation policies/restrictions (can't cancel after shipping)
 
-# TODO: Implement Forgot Password Functionality (Flipkart-style OTP)
-
-## Steps to Complete
-
-- [x] Create src/app/forgot-password/page.tsx: Two-step process - email input then OTP verification
-- [x] Create src/app/reset-password/page.tsx: Page to set new password after OTP verification
-- [x] Add mock OTP generation and verification logic
-- [x] Update src/app/login/page.tsx: Ensure forgot password link works (already present)
-- [x] Test complete forgot password flow: email → OTP → reset password
-
-# TODO: Implement User Registration/Signup
-
-## Steps to Complete
-
-- [x] Update src/app/signup/page.tsx: Add proper form handling with validation
-- [x] Add user creation logic: Check for existing emails, create new user, update credentials
-- [x] Auto-login after successful signup
-- [x] Add password confirmation field and validation
-- [x] Test signup flow with new user creation
+## Testing & Integration
+- [ ] Test address CRUD operations
+- [ ] Verify address validation
+- [ ] Test multiple address support
+- [ ] Test order cancellation
+- [ ] Verify order status updates
+- [ ] Update checkout flow integration

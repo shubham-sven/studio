@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getArtworkById } from '@/lib/data';
-
-// Mock database - in production, replace with real database
-let orders: any[] = [];
+import { orders } from './orders-data';
 
 // GET /api/orders - Get orders for a user
 export async function GET(request: NextRequest) {
@@ -33,7 +31,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const userOrders = orders.filter(order => order.userId === userId);
+    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined;
+    let userOrders = orders.filter(order => order.userId === userId);
+
+    // Sort by creation date (newest first)
+    userOrders = userOrders.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    // Apply limit if specified
+    if (limit) {
+      userOrders = userOrders.slice(0, limit);
+    }
 
     return NextResponse.json({
       success: true,
